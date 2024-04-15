@@ -1,0 +1,23 @@
+<template>
+    <form @submit.prevent='submit'>
+        <input type='date' v-model='date' class="date_input" placeholder="日期"/>
+        <select v-model='kind' class="kind_input" placeholder="消費種類">
+            <option value="日常飲食">日常飲食</option>
+            <option value="電信費">電信費</option>
+            <option value="交通費">交通費</option>
+            <option value="學習">學習</option>
+            <option value="假日(聚餐、出遊)">假日(聚餐、出遊)</option>
+            <option value="治裝水水">治裝水水</option>
+            <option value="其他(喜好)">其他(喜好)</option>
+        </select>
+        <input type='text' placeholder='150' v-model='spend'/>
+        <input type='text' placeholder='輸入備註' v-model='memo'/>
+        <input type="radio" name="payment" id="online" value="線上" v-model='payment'>
+        <input type="radio" name="payment" id="cash" value="現金" v-model='payment'>
+        <div class="payment_btn">
+            <label for="online" class="sbtn pink_btn">線上</label>
+            <label for="cash" class="sbtn green_btn">現金</label>
+        </div>
+        <button type='submit' class='submitBtn'>送出</button>
+    </form>
+</template>
