@@ -9,13 +9,13 @@
       </div>
       <todoInput @input='addTodo'></todoInput>
       <div class="main">
-            <div @change="changeTab">
+            <!-- <div @change="changeTab">
                 <ul>
                     <li :class="{tab:isChosen == 'all'}" @click.prevent="isChosen = 'all'; tabName()"><a href="#">全部</a></li>
                     <li :class="{tab:isChosen == 'need'}" @click.prevent="isChosen = 'need'; tabName()"><a href="#">必要</a></li>
                     <li :class="{tab:isChosen == 'want'}" @click.prevent="isChosen = 'want'; tabName()"><a href="#">想要</a></li>
                 </ul>
-            </div>
+            </div> -->
           <!-- <kind-label @tabName='changeTab'></kind-label> -->
           <table>
               <thead>
@@ -41,6 +41,10 @@
 <script setup>
 import todoInput from '@/components/todoInput.vue'
 import { ref } from "vue";
+import { useStore } from '@/store/itemInfo'
+
+const store = useStore()
+console.log(store);
 
 // todos是現在所有的項目
 const todos = ref([])
