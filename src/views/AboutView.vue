@@ -1,13 +1,15 @@
 <template>
 <!-- props的地方都還沒弄，無法操作中 -->
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>記帳頁</h1>
     <div>
       <div class="title" style="">
           <div>記帳小幫手</div>
           <span></span>
       </div>
-      <todoInput @input='addTodo'></todoInput>
+      <!-- 要傳的就只有id而已，其他東西都直接操作共用組件 -->
+      <!-- <todoInput @input='addTodo'></todoInput> -->
+      <todoInput v-model="EDIT_LIST"></todoInput>
       <div class="main">
             <!-- <div @change="changeTab">
                 <ul>
@@ -31,6 +33,7 @@
               </thead>
               <tbody>
               <!-- <todoItem v-for='todo in todosShow' :label='todo' :todos-edit='todosEdit' @delItem="itemDel" @edit_a_item="editItem"></todoItem> -->
+              <todoItem></todoItem>
               </tbody>
           </table>
       </div>
@@ -40,17 +43,20 @@
 
 <script setup>
 import todoInput from '@/components/todoInput.vue'
-import { ref } from "vue";
+import todoItem from '@/components/todoItem.vue'
+import { ref, onMounted } from "vue";
 import { useStore } from '@/store/itemInfo'
 
 const store = useStore()
-console.log(store);
+const LIST = store.LIST_DEFAULT
+const EDIT_LIST = store.EDIT_LIST_DEFAULT
+// console.log(LIST[0].date);
 
 // todos是現在所有的項目
 const todos = ref([])
 
 // todosShow是要顯示的項目(用於切換tab時)(動作的最後都會讓其值 = this.todos)
-const todosShow = ref([])
+const todosShow = ref(LIST)
 
 // todosEdit是項目要更動時會用到的
 // 應在父層就定義，因為之後會改值，指定義在子層的話會改不到
@@ -139,6 +145,10 @@ const changeTab = (tabName) => {
       }
   }
 }
+
+onMounted(() => {
+
+})
 
 </script>
 
