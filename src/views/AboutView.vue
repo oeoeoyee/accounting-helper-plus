@@ -19,7 +19,8 @@
                 </ul>
             </div> -->
           <!-- <kind-label @tabName='changeTab'></kind-label> -->
-          <table>
+        <todoItem></todoItem>
+          <!-- <table>
               <thead>
               <td>
                   <th>日期<button @click="resetDate" class="resetBtn">排序</button></th>
@@ -32,16 +33,16 @@
               </td>
               </thead>
               <tbody>
-              <!-- <todoItem v-for='todo in todosShow' :label='todo' :todos-edit='todosEdit' @delItem="itemDel" @edit_a_item="editItem"></todoItem> -->
-              <todoItem></todoItem>
+              <todoItem v-for='todo in todosShow' :label='todo' :todos-edit='todosEdit' @delItem="itemDel" @edit_a_item="editItem"></todoItem>
               </tbody>
-          </table>
+          </table> -->
       </div>
     </div>      
   </div>
 </template>
 
 <script setup>
+import '@/assets/css/style.css'
 import todoInput from '@/components/todoInput.vue'
 import todoItem from '@/components/todoItem.vue'
 import { ref, onMounted } from "vue";
@@ -103,24 +104,24 @@ const itemDel = (index_key) => {
   todosShow.value = [...todos.value]
 }
 
-const editItem = (todosEdit) => {
-  for(let i=0; i<todos.value.length; i++){
-      if(todos.value[i].index_key === todosEdit.index_key){
-          Object.assign(todos.value[i],todosEdit)
-      }
-  }
-  todosShow.value = [...todos.value]
-  todosEdit.value= [
-      {
-          date:'',
-          kind:'',
-          spend:'',
-          memo:'',
-          payment: '',
-          index_key:''
-      },
-  ]
-}
+// const editItem = (todosEdit) => {
+//   for(let i=0; i<todos.value.length; i++){
+//       if(todos.value[i].index_key === todosEdit.index_key){
+//           Object.assign(todos.value[i],todosEdit)
+//       }
+//   }
+//   todosShow.value = [...todos.value]
+//   todosEdit.value= [
+//       {
+//           date:'',
+//           kind:'',
+//           spend:'',
+//           memo:'',
+//           payment: '',
+//           index_key:''
+//       },
+//   ]
+// }
 
 const changeTab = (tabName) => {
   todosShow.value = [];
@@ -151,4 +152,3 @@ onMounted(() => {
 })
 
 </script>
-

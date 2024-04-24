@@ -1,36 +1,62 @@
 <template>
-    <tr v-for="(item, index) in todosShow" :key="index">
-    <!-- <tr> -->
-        {{index}}
-        <td>
-            <span :class="{active:isEdit}">日期</span>
-            <input type="text" v-model="item.date" :class="{active:isConfirm}" class="inputstyle">
-        </td>
-        <td>
-            <span :class="{active:isEdit}">消費種類</span>
-            <input type="text" v-model="item.kind" :class="{active:isConfirm}" class="inputstyle">
-        </td>
-        <td>
-            <span :class="{active:isEdit}">金額</span>
-            <input type="text" v-model="item.spend" :class="{active:isConfirm}" class="inputstyle">
-        </td>
-        <td>
-            <span :class="{active:isEdit}">備註</span>
-            <input type="text" v-model="item.memo" :class="{active:isConfirm}" class="inputstyle">
-        </td>
-        <td>
-            <span :class="{active:isEdit}">付款方式</span>
-            <input type="text" v-model="item.payment" :class="{active:isConfirm}" class="inputstyle">
-        </td>
-        <td>
-            <button @click="edit_b_item" :class="{active:isEdit}" class="editBtn">修改</button>
-            <button @click="edit_a_item" :class="{active:isConfirm}" class="confirmBtn">確認</button>
-            <button @click="del_item" class="delBtn">刪除</button>
-        </td>
-        <td>
-            <i class="fa-solid fa-crown king_icon"  @click="important" :class="isImportant"></i>
-        </td>
-    </tr>
+    <table>
+        <thead>
+            <th>項次</th>
+            <th>日期<button @click="resetDate" class="resetBtn">排序</button></th>
+            <th>支出種類</th>
+            <th>花費</th>
+            <th>備註</th>
+            <th>付款方式</th>
+            <th>編輯</th>
+            <th>重要</th>
+        </thead>
+        <tbody>
+            <tr v-for="(item, index) in todosShow" :key="index">
+            <!-- <tr> -->
+                <td>
+                    <span>{{ item.id }}</span>
+                </td>
+                <td>
+                    <!-- <span v-if="!isEdit && nowEdit === item.id">{{ item.date }}</span> -->
+                    <span v-if="nowEdit === item.id" :class="{active:!isEdit}">{{ item.date }}</span>
+                    <input type="text" v-if="isEdit && nowEdit === item.id" v-model="item.date" class="inputstyle">
+                    <!-- <input type="text" v-model="item.date" :class="{active:!isEdit}" class="inputstyle"> -->
+                </td>
+                <td>
+                    <span v-if="!isEdit && nowEdit === item.id">{{ item.kind }}</span>
+                    <!-- <span :class="{active:!isEdit}">{{ item.kind }}</span> -->
+                    <input type="text" v-if="isEdit && nowEdit === item.id" v-model="item.kind" class="inputstyle">
+                    <!-- <input type="text" v-model="item.kind" :class="{active:!isEdit && nowEdit === index}" class="inputstyle"> -->
+                </td>
+                <td>
+                    <span :class="{active:!isEdit && nowEdit === item.id}">{{ item.spend }}</span>
+                    <!-- <span :class="{active:isEdit}">{{ item.spend }}</span> -->
+                    <input type="text" v-if="isEdit && nowEdit === item.id" v-model="item.spend" class="inputstyle">
+                    <!-- <input type="text" v-model="item.spend" :class="{active:!isEdit && nowEdit === index}" class="inputstyle"> -->
+                </td>
+                <td>
+                    <span v-if="!isEdit">{{ item.memo }}</span>
+                    <!-- <span :class="{active:isEdit}">{{ item.memo }}</span> -->
+                    <input type="text" v-if="isEdit && nowEdit === item.id" v-model="item.memo" class="inputstyle">
+                    <!-- <input type="text" v-model="item.memo" :class="{active:!isEdit && nowEdit === index}" class="inputstyle"> -->
+                </td>
+                <td>
+                    <span v-if="!isEdit">{{ item.payment }}</span>
+                    <!-- <span :class="{active:isEdit}">{{ item.payment }}</span> -->
+                    <input type="text" v-if="isEdit && nowEdit === item.id" v-model="item.payment" class="inputstyle">
+                    <!-- <input type="text" v-model="item.payment" :class="{active:!isEdit && nowEdit === index}" class="inputstyle"> -->
+                </td>
+                <td>
+                    <button @click="editItem('update', item.id)" :class="{active:isEdit}" class="editBtn">修改</button>
+                    <button @click="editItem('confirm')" :class="{active:!isEdit}" class="confirmBtn">確認</button>
+                    <button @click="editItem('del', item.id)" class="delBtn">刪除</button>
+                </td>
+                <td>
+                    <i class="fa-solid fa-crown king_icon"  @click="important" :class="isImportant"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </template>
 
 <script setup>
@@ -41,12 +67,41 @@ const store = useStore()
 const LIST = store.LIST_DEFAULT
 const EDIT_LIST = store.EDIT_LIST_DEFAULT
 
-const isConfirm = ref(false)
+// "編輯時"才會是true
+const isEdit = ref(false)
+const nowEdit = ref(0)
 
 const todosShow = ref(LIST)
 // props: {
 //     todos-show
 // }
+
+const editItem = (action, id) => {
+    if(action === 'update'){
+        nowEdit.value = id
+        isEdit.value = !isEdit.value
+    }else if(action === 'confirm'){
+        isEdit.value = !isEdit.value
+    }else if(action === 'del'){
+        
+    }
+//   for(let i=0; i<todos.value.length; i++){
+//       if(todos.value[i].index_key === todosEdit.index_key){
+//           Object.assign(todos.value[i],todosEdit)
+//       }
+//   }
+//   todosShow.value = [...todos.value]
+//   todosEdit.value= [
+//       {
+//           date:'',
+//           kind:'',
+//           spend:'',
+//           memo:'',
+//           payment: '',
+//           index_key:''
+//       },
+//   ]
+}
 
 onMounted(() => {
     // console.log(todos-show);

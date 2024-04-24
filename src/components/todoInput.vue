@@ -36,7 +36,15 @@ props: {
 }
 
 const submit = () => {
+    // 要拷貝才不會EDIT_LIST歸零了data也受影響，因為一層而已所以淺拷貝
+    const data = Object.assign({}, EDIT_LIST)
+    data.id = String(LIST.length+1)
+    LIST.push(data)
+    for (const key in EDIT_LIST) {
+        EDIT_LIST[key] = ''
+    }
     console.log(EDIT_LIST);
+    console.log(LIST);
 }
 
 onMounted(() => {

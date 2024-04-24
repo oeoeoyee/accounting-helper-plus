@@ -11,7 +11,7 @@ const LIST = [
         payment:'6'
     },
     {
-        id:'1',
+        id:'2',
         date:'2',
         kind:'3',
         spend:'4',
