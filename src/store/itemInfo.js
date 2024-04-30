@@ -2,22 +2,22 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 
 const LIST = [
-    {
-        id:'1',
-        date:'2',
-        kind:'3',
-        spend:'4',
-        memo:'5',
-        payment:'6'
-    },
-    {
-        id:'2',
-        date:'2',
-        kind:'3',
-        spend:'4',
-        memo:'5',
-        payment:'6'
-    },
+    // {
+    //     id:'1',
+    //     date:'2',
+    //     kind:'3',
+    //     spend:'4',
+    //     memo:'5',
+    //     payment:'6'
+    // },
+    // {
+    //     id:'2',
+    //     date:'2',
+    //     kind:'3',
+    //     spend:'4',
+    //     memo:'5',
+    //     payment:'6'
+    // },
 ]
 
 const EDIT_LIST = {

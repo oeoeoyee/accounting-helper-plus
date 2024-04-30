@@ -1,6 +1,6 @@
 <template>
 <!-- props的地方都還沒弄，無法操作中 -->
-  <div class="about">
+  <div id="app3">
     <h1>記帳頁</h1>
     <div>
       <div class="title" style="">
