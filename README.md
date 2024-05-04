@@ -13,7 +13,7 @@ npm install
 ### Compiles and hot-reloads for development
 ### 專案啟動要這個
 ```
-npm run serve
+npm run dev
 ```
 
 ### Compiles and minifies for production
