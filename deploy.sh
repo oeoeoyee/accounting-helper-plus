@@ -1,4 +1,4 @@
-#!B:\about code\Vue\accounting-helper-plus sh
+# !/usr/bin/env sh
 
 # 檢查有沒有 dist 資料夾，如果有的話，就移除
 DIR="./dist"
