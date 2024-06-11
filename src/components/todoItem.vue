@@ -1,7 +1,7 @@
 <template>
     <table>
         <thead>
-            <th>排序</th>
+            <!-- <th>排序</th> -->
             <th>日期<button @click="resetDate" class="resetBtn">排序</button></th>
             <th>支出種類</th>
             <th>花費</th>
@@ -13,9 +13,9 @@
         <tbody>
             <tr v-for="(item, index) in todosShow" :key="index">
             <!-- <tr> -->
-                <td>
+                <!-- <td>
                     <span>{{ item.id }}</span>
-                </td>
+                </td> -->
                 <td>
                     <!-- <span v-if="!isEdit && nowEdit === item.id">{{ item.date }}</span> -->
                     <span v-if="nowEdit !== item.id">{{ item.date }}</span>
