@@ -1,21 +1,21 @@
 <template>
     <table>
         <thead>
-            <!-- <th>排序</th> -->
+            <th>排序</th>
             <th>日期<button @click="resetDate" class="resetBtn">排序</button></th>
             <th>支出種類</th>
             <th>花費</th>
             <th>備註</th>
             <th>付款方式</th>
             <th>編輯</th>
-            <th>重要</th>
+            <!-- <th>重要</th> -->
         </thead>
         <tbody>
             <tr v-for="(item, index) in todosShow" :key="index">
             <!-- <tr> -->
-                <!-- <td>
+                <td>
                     <span>{{ item.id }}</span>
-                </td> -->
+                </td>
                 <td>
                     <!-- <span v-if="!isEdit && nowEdit === item.id">{{ item.date }}</span> -->
                     <span v-if="nowEdit !== item.id">{{ item.date }}</span>
@@ -51,9 +51,9 @@
                     <button @click="editItem('confirm')" :class="{active:!isEdit}" class="confirmBtn">確認</button>
                     <button @click="editItem('del', item.id)" class="delBtn">刪除</button>
                 </td>
-                <td>
+                <!-- <td>
                     <i class="fa-solid fa-crown king_icon"  @click="important" :class="isImportant"></i>
-                </td>
+                </td> -->
             </tr>
         </tbody>
     </table>
