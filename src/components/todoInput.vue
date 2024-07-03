@@ -35,33 +35,83 @@ props: {
     EDIT_LIST
 }
 
-const submit = () => {
+const submit = async() => {
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbxVza68OA9HNHt3N8r5jXuKb8Ph2EmASe4to88P7SURdkBQROSnzzn7_8TnGIZYJ5lp/exec'
+
+    //================ 原方法(串接不會成功)===============//
     // 要拷貝才不會EDIT_LIST歸零了data也受影響，因為一層而已所以淺拷貝
-    const data = Object.assign({}, EDIT_LIST)
-    // data.id = String(LIST.length+1)
-    data.date = data.date.replaceAll('-', '')
-    // LIST.push(data)
-    console.log(data);
+    // const data = Object.assign({}, EDIT_LIST)
+    // // data.id = String(LIST.length+1)
+    // data.date = data.date.replaceAll('-', '')
+    // // LIST.push(data)
+    // console.log(data);
 
-    // 好像沒有真的push到要的東西
-    fetch('https://script.google.com/macros/s/AKfycbxyC_VSdsHdEMESCJPYZBM06LmyZMMR4u8HmBC7MxotpdQH6oHpcoYMdXFdvktsTyI/exec', {
-    method:'POST',
-    body:encodeURI(JSON.stringify({data})),
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-    }
+    // // 好像沒有真的push到要的東西
+    // fetch(scriptUrl, {
+    // method:'POST',
+    // body:encodeURI(JSON.stringify({data})),
+    // headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+    // }
+    // })
+    // .then(res => {
+    //     return res.json();   // 使用 json() 可以得到 json 物件
+    // }).then(result => {
+    //     console.log(result); // 得到 {name: "oxxo", age: 18, text: "你的名字是 oxxo，年紀 18 歲～"}
+    // });
+
+    // for (const key in EDIT_LIST) {
+    //     EDIT_LIST[key] = ''
+    // }
+
+    //================ 原方法(自己改良的gpt方法)(會報錯)===============//
+    // const response = await fetch('https://script.google.com/macros/s/AKfycbwqlOzlj2djM3e5BCAsiZsoajOVAh4bkIRIu2cxo4bQ2JUcy3tW3vChlfduIEUYCoz2/exec', {
+    //   method: 'POST', // 使用POST方法
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     action: 'yourCustomPostFunction', // 你自定義的POST函數名稱
+    //     data: { key1: 'value1', key2: 'value2' } // 你要傳送的數據
+    //   })
+    // });
+    // const data = await response.json();
+    // console.log(data);
+
+    //================ 原方法(直接抄機器人)===============//
+    // try {
+    //     const response = await fetch(scriptUrl, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         action: 'yourCustomPostFunction',
+    //         data: { key1: 'value1', key2: 'value2' }
+    //     })
+    //     });
+
+    //     if (!response.ok) {
+    //     throw new Error('Network response was not ok');
+    //     }
+
+    //     const data = await response.json();
+    //     console.log(data);
+    // } catch (error) {
+    //     console.error('Error:', error);
+    // }
+
+    //================ 測試方法(直接抄機器人)===============//
+    fetch(scriptUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+    },
+        body: JSON.stringify({ key: 'value' })
     })
-    .then(res => {
-        return res.json();   // 使用 json() 可以得到 json 物件
-    }).then(result => {
-        console.log(result); // 得到 {name: "oxxo", age: 18, text: "你的名字是 oxxo，年紀 18 歲～"}
-    });
-
-    for (const key in EDIT_LIST) {
-        EDIT_LIST[key] = ''
-    }
-    // console.log(EDIT_LIST);
-    // console.log(LIST);
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
 }
 
 // 原本進來的會是ISO 8601 格式的日期
