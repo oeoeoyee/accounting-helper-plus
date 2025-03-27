@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/',
   plugins: [vue()],
   resolve: {
     alias: {
@@ -13,4 +13,13 @@ export default defineConfig({
       '/imgs': 'src/assets/images',
     },
   },
+  // server: {
+  //   proxy: {
+  //     '/macros': {
+  //       target: 'http://localhost:5173/',
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace('https://script.google.com/', ''),
+  //     },
+  //   },
+  // },
 })
