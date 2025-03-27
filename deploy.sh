@@ -15,7 +15,7 @@ cd dist
 # 初始化 git，將 dist 資料夾進版控
 git init
 # 切換到 main branch，沒有的話，會自動建立
-git checkout -b main
+git checkout -b gh-pages
 # 將所有檔案加進版控
 git add -A
 # 進行 commit
