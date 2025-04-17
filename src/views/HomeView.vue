@@ -1,7 +1,7 @@
 <template>
   <div class="home not-finished">
     <p>
-      功能待開發，請先幫我前往<router-link to="/bookKeeping" style="text-decoration: underline">bookKeeping頁</router-link>
+      功能待開發，請先幫我前往<router-link to="/accounting-helper-plus/bookKeeping" style="text-decoration: underline">bookKeeping頁</router-link>
     </p>
   </div>
 </template>

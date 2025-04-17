@@ -1,8 +1,8 @@
 <template>
   <div>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/bookKeeping">BookKeeping</router-link>
+    <router-link to="/accounting-helper-plus/">Home</router-link> |
+    <router-link to="/accounting-helper-plus/bookKeeping">BookKeeping</router-link>
   </nav>
   <router-view/>
   </div>
