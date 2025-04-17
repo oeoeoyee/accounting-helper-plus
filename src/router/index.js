@@ -4,12 +4,12 @@ import BookKeeping from '../views/BookKeeping.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/accounting-helper-plus/',
     name: 'home',
     component: HomeView
   },
   {
-    path: '/bookKeeping',
+    path: '/accounting-helper-plus/bookKeeping',
     name: 'bookKeeping',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
